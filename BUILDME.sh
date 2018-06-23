@@ -116,9 +116,8 @@ case $1 in
 		run_interactive
 		;;
 esac
-
 mv /opt/ngx_openresty/nginx/html/index.html /opt/ngx_openresty/nginx/html/index.html_ORG
-cp -rf /root/webserver/index.html /opt/ngx_openresty/nginx/html/
+cp -rf /root/webserver/index.html /opt/ngx_openresty/nginx/html/index.html
 
 #
 # END OF FILE
