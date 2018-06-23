@@ -39,6 +39,8 @@ Note: If we're going with default installation of Nagios Core then we need to up
 
 then under hosts directory we need to update the services.cfg 
 
+Note: I didn't included the steps to install Nagios core jsut given the core files wehere we need to update email id to recevive emails. 
+
 #####################################################################################################################################
 
 
