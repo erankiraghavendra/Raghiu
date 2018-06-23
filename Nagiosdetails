@@ -1,0 +1,64 @@
+Services.cfg file
+
+define service{
+use                     generic-service
+host_name               node1
+service_description     webserver
+check_command           check_tcp!80
+max_check_attempts      5
+contact_groups          admin
+}
+###################################################################################################################3
+
+Contact.cfg file 
+
+define contact{
+        contact_name                    nagiosadmin             ; Short name of user
+        use                             generic-contact         ; Inherit default values from generic-contact template (defined above)
+        alias                           Admin            ; Full name of user
+       #email                           devops@congnitivescale.com  ; <<***** CHANGE THIS TO YOUR EMAIL ADDRESS ******
+        }
+
+define contact{
+        contact_name                    Infra
+        use                             generic-contact
+        alias                           Infra team
+        #email                          devops@congnitivescale.com
+        service_notification_period     24x7
+        host_notification_period        24x7
+        service_notification_options    c
+        host_notification_options       c
+        service_notification_commands   notify-service-by-email ; send service notifications via email
+        host_notification_commands      notify-host-by-email    ; send host notifications via email
+}
+
+
+
+
+
+###############################################################################
+###############################################################################
+#
+# CONTACT GROUPS
+#
+###############################################################################
+###############################################################################
+
+# We only have one contact in this simple configuration file, so there is
+# no need to create more than one contact group.
+
+define contactgroup{
+        contactgroup_name       admins
+        alias                   Nagios Administrators
+        members                 nagiosadmin
+        }
+define contactgroup{
+        contactgroup_name      admin
+        alias                  admin
+        members                Infra
+}
+
+
+
+
+}
