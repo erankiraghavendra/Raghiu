@@ -1,0 +1,22 @@
+---
+ - name: Downlaoding the source code and deployint it on the remote server.
+   hosts: Openresty
+   remote_user: root
+   tasks:
+     - name: Installaing the required package.
+       yum:
+        name: git
+        state: latest
+
+     - git:
+         repo: 'https://github.com/williamcaban/ngx_openresty-rpm-spec.git'
+         dest: /root/Openresty/
+
+     - name: exectuing the script.
+       command: sh /root/Openresty/BUILDME.sh buildinstall
+
+     - name: starting and enabling the services.
+       systemd:
+         name: ngx_openresty
+         state: started
+         enabled: yes
