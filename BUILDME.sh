@@ -48,9 +48,9 @@ build_package()
 install_test_package()
 {
 	
-	if [ -f ${HOME}/rpmbuild/RPMS/x86_64/ngx_openresty-${VERSION}-${RELEASE}.el7.centos.x86_64.rpm ]; then
+	if [ -f ${HOME}/rpmbuild/RPMS/x86_64/ngx_openresty-${VERSION}-${RELEASE}.el7.x86_64.rpm ]; then
 		echo -e "\nInstalling package and dependencies...."
-		${SUDO} yum -y install ${HOME}/rpmbuild/RPMS/x86_64/ngx_openresty-${VERSION}-${RELEASE}.el7.centos.x86_64.rpm
+		${SUDO} yum -y install ${HOME}/rpmbuild/RPMS/x86_64/ngx_openresty-${VERSION}-${RELEASE}.el7.x86_64.rpm
 	else
 		echo -e "\nERROR: No RPM found..."
 	fi
