@@ -118,7 +118,7 @@ case $1 in
 esac
 
 mv /opt/ngx_openresty/nginx/html/index.html /opt/ngx_openresty/nginx/html/index.html_ORG
-cp -rf /root/Openresty/index.html /opt/ngx_openresty/nginx/html/
+cp -rf /root/webserver/index.html /opt/ngx_openresty/nginx/html/
 
 #
 # END OF FILE

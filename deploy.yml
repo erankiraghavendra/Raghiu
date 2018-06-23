@@ -9,11 +9,11 @@
         state: latest
 
      - git:
-         repo: 'https://github.com/williamcaban/ngx_openresty-rpm-spec.git'
-         dest: /root/Openresty/
+         repo: 'https://github.com/erankiraghavendra/Raghiu.git'
+         dest: /root/webserver/
 
      - name: exectuing the script.
-       command: sh /root/Openresty/BUILDME.sh buildinstall
+       command: sh /root/webserver/BUILDME.sh buildinstall
 
      - name: starting and enabling the services.
        systemd:
