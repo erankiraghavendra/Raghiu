@@ -1,0 +1,71 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"  
+Resources:
+
+  ## Security group for WebInstance 
+  ## from all IP addresses
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Openresty-web servers
+      GroupName: Openresty
+      VpcId: vpc-f9bf5f83
+      SecurityGroupIngress:
+        -
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: xx.aa.bb.cc/32
+        -
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: xx.aa.bb.cc/32
+          
+        - 
+          IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: xx.aa.bb.cc/32
+
+  ## EC2 Instance with a custom security group
+  ## and a larger root instance device
+  ## and an externally created EBS volume attached
+  WebInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      BlockDeviceMappings:
+        -
+          DeviceName: "/dev/sda1"
+          Ebs:
+            VolumeSize: 20
+            VolumeType: gp2
+      InstanceType: t2.micro
+      ImageId: ami-9887c6e7
+      KeyName: eranr
+      SecurityGroupIds:
+        - !Ref WebSecurityGroup
+      SubnetId: subnet-f4bed1be
+      Tags:
+        -
+          Key: Name
+          Value: webserver-Openresty
+  ## Attach EIP to the instance
+  WebElasticIp:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref WebInstance
+      Domain: vpc
+      
+  Outputs: 
+   InstanceId:
+     Description: The InstanceId
+     Value: !Ref WebInstance
+   ElasticIP:
+    Description: ElasticIP
+    Value: !Ref WebElasticIp      
+    
+    
+    
+    
+    
